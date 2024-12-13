@@ -1,9 +1,10 @@
 import unittest, logging
 from module_12_4 import Runner
 
+logging.basicConfig(level=logging.INFO, filemode="w", filename="runner_tests.log", encoding="UTF-8",
+                        format="%(levelname)s | %(message)s")
+
 class RunnerTest(unittest.TestCase):
-
-
 
     def test_walk(self):
         try:
@@ -13,7 +14,7 @@ class RunnerTest(unittest.TestCase):
                 test_walk.walk()
             self.assertEqual(test_walk.distance, speed * 10)
             logging.info(f'"test_walk" выполнен успешно')
-        except ValueError as ve:
+        except ValueError:
             logging.warning("Неверная скорость для Runner", exc_info=True)
 
 
@@ -26,7 +27,7 @@ class RunnerTest(unittest.TestCase):
                 test_run.run()
             self.assertEqual(test_run.distance, 100)
             logging.info('"test_run" выполнен успешно')
-        except TypeError as te_:
+        except TypeError:
             logging.warning("Неверный тип данных для объекта Runner", exc_info=True)
 
 
@@ -39,6 +40,5 @@ class RunnerTest(unittest.TestCase):
         self.assertNotEqual(test_walk.distance, test_run.distance)
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, filemode="w", filename="runner_tests.log", encoding="UTF-8",
-                        format="%(levelname)s | %(message)s")
+
     unittest.main()
